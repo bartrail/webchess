@@ -122,12 +122,15 @@ a:hover {
     position: absolute;
     width: 30px;
     height: 100px;
-    left: 0;
     line-height: 100px;
     text-align: center;
 }
-#gameBorder .border-y:nth-child(2n+1),
-#gameBorder .border-x:nth-child(2n) {
+#gameBorder .border-y.left:nth-child(2n+1),
+#gameBorder .border-x.bottom:nth-child(2n) {
+    background: #eaeaea;
+}
+#gameBorder .border-y.right:nth-child(2n),
+#gameBorder .border-x.top:nth-child(2n+1) {
     background: #eaeaea;
 }
 
@@ -135,7 +138,6 @@ a:hover {
     position: absolute;
     width: 100px;
     height: 30px;
-    bottom: 0;
     text-align: center;
     line-height: 30px;
 }

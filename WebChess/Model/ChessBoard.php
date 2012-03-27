@@ -204,23 +204,31 @@ class ChessBoard {
     }
   }
   
-  public function renderBorderX()
+  public function renderBorderX($position = 'bottom')
   {
       $border = '';
       for($x = 1; $x <= $this->dimensions[0]; $x++) {
-          $border .= sprintf('<div class="border-x pos-%s" style="left: %spx">%s</div>', $x, ($x-1)*100 + 30, $x);
+          $border .= sprintf('<div class="%s border-x pos-%s" style="left: %spx; %s:0px;">%s</div>', 
+                  $position,
+                  $x, 
+                  ($x-1)*100 + 30, 
+                  $position,
+                  $x
+                  );
       }
       return $border;
   }
   
-  public function renderBorderY()
+  public function renderBorderY($position = 'left')
   {
       $border = '';
       $row    = $this->dimensions[1];
       for($y = 1; $y <= $this->dimensions[1] ; $y++) {
-          $border .= sprintf('<div class="border-y pos-%s" style="top: %spx">%s</div>', 
+          $border .= sprintf('<div class="%s border-y pos-%s" style="top: %spx; %s:0px;">%s</div>', 
+                  $position,
                   $row, 
                   ($y-1)*100 + 30, 
+                  $position,
                   $row
           );
           $row--;
