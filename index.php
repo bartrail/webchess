@@ -7,5 +7,17 @@ spl_autoload_register();
 
 $game = new ChessGame();
 
-
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebChess</title>
+    
+    
+</head>
+<body>
+    <?php
+    
+    ?>
+</body>
+</html>
