@@ -31,7 +31,7 @@ abstract class Player {
   protected $name;
   
   /**
-   *
+   * Human / AI
    * @var String $type
    */
   protected $type;
@@ -163,4 +163,8 @@ abstract class Player {
     return $this->pieces;
   }
   
+  public function addPiece($piece)
+  {
+      $this->pieces[] = $piece;
+  }
 }

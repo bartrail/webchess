@@ -114,7 +114,40 @@ class ChessGame {
   {
       $this->setCreatedAt(new \DateTime());
       $this->board = new ChessBoard($this);
-//      $this->nextRound();
+//    $this->nextRound();
+  
+      
+      $white = $this->getPlayer(0);
+      
+      $wPawn  = array();
+      for($x=1; $x<=8; $x++)
+      {
+      $wPawn[] = $this->getBoard()->getField($x, 2);
+      }
+      
+      $wKnight = array($this->getBoard()->getField(2, 1),$this->getBoard()->getField(7, 1));
+      $wBishop = array($this->getBoard()->getField(3, 1), $this->getBoard()->getField(6, 1));
+      $wRook = array($this->getBoard()->getField(1, 1), $this->getBoard()->getField(8, 1));
+      $wQueen = array($this->getBoard()->getField(4, 1));
+      $wKing = array($this->getBoard()->getField(5, 1));
+      
+      
+      
+      $black = $this->getPlayer(1);
+      
+      
+      $bPawn  = array();
+      for($x=1; $x<=8; $x++)
+      {
+      $bPawn[] = $this->getBoard()->getField($x, 7);
+      }
+      
+      $bKnight = array($this->getBoard()->getField(2, 8),$this->getBoard()->getField(7, 8));
+      $bBishop = array($this->getBoard()->getField(3, 8), $this->getBoard()->getField(6, 8));
+      $bRook = array($this->getBoard()->getField(1, 8), $this->getBoard()->getField(8, 8));
+      $bQueen = array($this->getBoard()->getField(4, 8));
+      $bKing = array($this->getBoard()->getField(5, 8));
+      
   }
   
   /**
