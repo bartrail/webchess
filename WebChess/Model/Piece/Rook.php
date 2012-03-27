@@ -3,6 +3,9 @@
 namespace WebChess\Model\Piece;
 
 use WebChess\Model\Piece;
+use WebChess\Model\Player;
+use WebChess\Model\Field;
+use WebChess\Model\ChessGame;
 
 /**
  * Rook Piece Class
@@ -22,14 +25,8 @@ class Rook extends Piece {
       }
   }       
     
-  public function getPossibleMoves(Field $field)
+  protected function getPossibleMoves()
   {
-      return array();
-  }
-  
-  public function verifyMove(Field $field)
-  {
-//    throw new \Exception('todo');
       return array();
   }
   

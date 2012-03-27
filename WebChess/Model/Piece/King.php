@@ -28,10 +28,10 @@ class King extends Piece {
       }
   }    
     
-  protected function getPossibleMoves(Field $field)
+  protected function getPossibleMoves()
   {
-      $x = $field->getPosX();
-      $y = $field->getPosY();
+      $x = $this->getField()->getPosX();
+      $y = $this->getField()->getPosY();
       
       $moves = array(
         array($x-1, $y-1),  // bottom left

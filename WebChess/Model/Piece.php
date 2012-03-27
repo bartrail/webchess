@@ -249,7 +249,7 @@ abstract class Piece {
       $target  = $field->getPosition();
       
       // get all possible moves next
-      $allMoves   = $this->getPossibleMoves($this->getField());
+      $allMoves   = $this->getPossibleMoves();
       
       // remove all fields that either are out of the board or placed 
       // width an own piece
@@ -284,7 +284,7 @@ abstract class Piece {
    * @param Field $field 
    * @return array
    */
-  protected abstract function getPossibleMoves(Field $field);
+  protected abstract function getPossibleMoves();
   
   public function __toString()
   {

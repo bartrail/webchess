@@ -25,14 +25,9 @@ class Bishop extends Piece {
       }
   }
     
-  public function getPossibleMoves(Field $field)
+  public function getPossibleMoves()
   {
       return array();
   }  
-  
-  public function verifyMove(Field $field)
-  {
-    throw new \Exception('todo');
-  }
   
 }

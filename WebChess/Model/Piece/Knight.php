@@ -25,14 +25,9 @@ class Knight extends Piece {
       }
   }       
    
-  public function getPossibleMoves(Field $field)
+  protected function getPossibleMoves()
   {
       return array();
-  }
-  
-  public function verifyMove(Field $field)
-  {
-    throw new \Exception('todo');
   }
   
 }
