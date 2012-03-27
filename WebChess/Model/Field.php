@@ -244,7 +244,18 @@ class Field {
   
   public function getNameX()
   {
-//    switch()
+      return $this->getPosX();
+  }
+  
+  public function getNameY()
+  {
+      $names = 'abcdefghijklmnopqrstuvwxyz';
+      return $names[$this->getPosY()-1];
+  }
+  
+  public function getName()
+  {
+      return $this->getNameY().$this->getNameX();
   }
   
   /**
@@ -260,11 +271,12 @@ class Field {
    public function render()
    {
      
-     $element = sprintf('<div id="field-%s-%s" data-x="%s" data-y="%s" class="field %s"></div>', 
+     $element = sprintf('<div id="field-%s-%s" data-x="%s" data-y="%s" data-name="%s" class="field %s"></div>', 
              $this->getPosX(),
              $this->getPosY(),
              $this->getPosX(),
              $this->getPosY(),
+             $this->getName(),
              $this->getColor()
      );
      return $element;
