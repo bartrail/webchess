@@ -26,14 +26,9 @@ spl_autoload_register();
         </div>
         
         <div id="gameWrapper">
-            <div class="field white"></div>
-            <div class="field black"></div>
-            <div class="field white"></div>
-            <div class="field black"></div>
-            <div class="field white"></div>
-            <div class="field black"></div>
-            <div class="field white"></div>
-            <div class="field black"></div>
+            <?php
+            
+            ?>
         </div>
         
     </div>
