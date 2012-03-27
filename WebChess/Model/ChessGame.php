@@ -110,9 +110,11 @@ class ChessGame {
   /**
    * initialization logic for a new game 
    */
-  protected function initNewGame()
+  public function initNewGame()
   {
-    
+      $this->setCreatedAt(new \DateTime());
+      $board = new ChessBoard($this);
+//      $this->nextRound();
   }
   
   /**
@@ -154,6 +156,82 @@ class ChessGame {
       self::COLOR_WHITE,
       self::COLOR_BLACK
     );
+  }
+  
+  public function setGameId($id)
+  {
+      $this->id = $id;
+  }
+  
+  public function getGameId()
+  {
+      return $this->id;
+  }
+  
+  protected function setRound($round)
+  {
+      $this->round = $round;
+  }
+  
+  public function getRound()
+  {
+      return $this->round;
+  }
+  
+  public function nextRound()
+  {
+      $this->round++;
+      
+  }
+  
+  public function setBoard(ChessBoard $board)
+  {
+      $this->board = $board;
+  }
+  
+  public function getBoard()
+  {
+      return $this->board;
+  }
+  
+  public function setStatus($status)
+  {
+      $this->status = $status;
+  }
+  
+  public function getStatus()
+  {
+      return $this->status;
+  }
+  
+  public function setWinner(Player $player)
+  {
+      $this->winner = $player;
+  }
+  
+  public function getWinner()
+  {
+      return $this->winner;
+  }
+  
+  public function setCreatedAt(DateTime $date)
+  {
+      $this->createdAt = $date;
+  }
+  
+  public function getCreatedAt()
+  {
+      return $this->createdAt;
+  }
+  
+  public function setUpdatedAt(DateTime $date)
+  {
+      $this->updatedAt = $date;
+  }
+  
+  public function getUpdatedAt()
+  {
+      return $this->updatedAt;
   }
   
 }

@@ -62,13 +62,12 @@ abstract class Player {
    * @param String $color
    * @param ChessGame $game 
    */
-  public function __construct($name, $color, ChessGame $game)
+  public function __construct($name, $color)
   {
     
     $this->type = self::TYPE;
     $this->setName($name);
     $this->setColor($color);
-    $this->setGame($game);
     
   }
   
@@ -121,7 +120,7 @@ abstract class Player {
    * 
    * @param ChessGame $game 
    */
-  protected function setGame(ChessGame $game)
+  public function setGame(ChessGame $game)
   {
     $this->game = $game;
   }
