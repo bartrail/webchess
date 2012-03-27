@@ -37,6 +37,13 @@ class ChessBoard {
   protected $game;
   
   /**
+   *
+   * @var type 
+   */
+  protected $fieldBlack = 'black';
+  protected $fieldWhite = 'white';
+  
+  /**
    * initializes a ChessBoard
    * 
    * @param ChessGame $game
@@ -181,6 +188,19 @@ class ChessBoard {
         $this->fields[$x][$y] = new Field($this, $x, $y);
         
       }
+    }
+  }
+  
+  public function render()
+  {
+      
+    for($x = $this->dimensions[0]; $x >= 1 ; $x--)
+    { 
+        foreach($this->fields[$x] as $y => $field) 
+        {
+            /* @var $field Field */
+            echo $field->render();
+        }
     }
   }
   
