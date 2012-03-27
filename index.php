@@ -40,6 +40,8 @@ $history->save($game);
                     $game->getBoard()->render();
                     ?>
                 </div>
+                <?php echo $game->getBoard()->renderBorderX() ?>
+                <?php echo $game->getBoard()->renderBorderY() ?>
             </div>            
         </div>
             

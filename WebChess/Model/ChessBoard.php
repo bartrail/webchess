@@ -204,6 +204,30 @@ class ChessBoard {
     }
   }
   
+  public function renderBorderX()
+  {
+      $border = '';
+      for($x = 1; $x <= $this->dimensions[0]; $x++) {
+          $border .= sprintf('<div class="border-x pos-%s" style="left: %spx">%s</div>', $x, ($x-1)*100 + 30, $x);
+      }
+      return $border;
+  }
+  
+  public function renderBorderY()
+  {
+      $border = '';
+      $row    = $this->dimensions[1];
+      for($y = 1; $y <= $this->dimensions[1] ; $y++) {
+          $border .= sprintf('<div class="border-y pos-%s" style="top: %spx">%s</div>', 
+                  $row, 
+                  ($y-1)*100 + 30, 
+                  $row
+          );
+          $row--;
+      }
+      return $border;
+  }
+  
   /**
    * builds the field from the history snapshot coming from the database
    * 
