@@ -181,7 +181,6 @@ class ChessGame {
   public function nextRound()
   {
       $this->round++;
-      
   }
   
   /**

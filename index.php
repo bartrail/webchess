@@ -1,7 +1,7 @@
 <?php
 
 use WebChess\Model\ChessGame;
-use WebChess\Model\Field;
+use WebChess\Model\ChessGameHistory;
 use WebChess\Model\Player\Human;
 
 spl_autoload_extensions(".php"); // comma-separated list
@@ -14,7 +14,10 @@ $game = new ChessGame(array($p1, $p2));
 
 $game->initNewGame();
 
-?> 
+$history = new ChessGameHistory();
+$history->save($game);
+
+?>
 <!DOCTYPE html>
 <html>
 <head>

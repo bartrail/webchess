@@ -242,6 +242,11 @@ class Field {
     return $this->piece;
   }
   
+  public function getNameX()
+  {
+//    switch()
+  }
+  
   /**
    * find out whethere this field has a piece or not
    * 

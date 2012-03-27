@@ -10,7 +10,25 @@ namespace WebChess\Model;
  */
 class ChessGameHistory {
   
-  //put your code here
+  protected $game;
+  
+  protected $round;
+  
+  protected $boardSnapshot;
+  
+  protected $createdAt;
+  
+  protected $session;
 
+  public function __construct()
+  {
+      
+  }
+  
+  public function save(ChessGame $game)
+  {
+      print_r($game);
+  }
+  
   
 }
