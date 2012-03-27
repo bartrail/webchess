@@ -1,6 +1,7 @@
 <?php
 
 use WebChess\Model\ChessGame;
+use WebChess\Model\Field;
 use WebChess\Model\Player\Human;
 
 spl_autoload_extensions(".php"); // comma-separated list
@@ -31,7 +32,7 @@ $game->initNewGame();
         
         <div id="gameWrapper">
             <?php
-            
+           $game->getBoard()->render();
             ?>
         </div>
         
