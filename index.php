@@ -34,10 +34,16 @@ $history->save($game);
         </div>
         
         <div id="gameWrapper">
-            <?php
-           $game->getBoard()->render();
-            ?>
+            <div id="gameBorder">
+                <div id="board">
+                    <?php
+                    $game->getBoard()->render();
+                    ?>
+                </div>
+            </div>            
         </div>
+            
+            
         
     </div>
     
