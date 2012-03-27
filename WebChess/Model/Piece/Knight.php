@@ -24,7 +24,12 @@ class Knight extends Piece {
           $this->setImage('&#9822;');
       }
   }       
-    
+   
+  public function getPossibleMoves(Field $field)
+  {
+      return array();
+  }
+  
   public function verifyMove(Field $field)
   {
     throw new \Exception('todo');

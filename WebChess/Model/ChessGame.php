@@ -6,6 +6,13 @@ use WebChess\Model\Player;
 use WebChess\Model\ChessBoard;
 use WebChess\Model\ChessGameHistory;
 
+use WebChess\Model\Piece\Pawn;
+use WebChess\Model\Piece\Bishop;
+use WebChess\Model\Piece\Knight;
+use WebChess\Model\Piece\Rook;
+use WebChess\Model\Piece\Queen;
+use WebChess\Model\Piece\King;
+
 /**
  * Description of ChessGame
  *
@@ -122,32 +129,51 @@ class ChessGame {
       $wPawn  = array();
       for($x=1; $x<=8; $x++)
       {
-      $wPawn[] = $this->getBoard()->getField($x, 2);
+      $wPawn[] = new Pawn($white, $this->getBoard()->getField($x, 2));
       }
       
-      $wKnight = array($this->getBoard()->getField(2, 1),$this->getBoard()->getField(7, 1));
-      $wBishop = array($this->getBoard()->getField(3, 1), $this->getBoard()->getField(6, 1));
-      $wRook = array($this->getBoard()->getField(1, 1), $this->getBoard()->getField(8, 1));
-      $wQueen = array($this->getBoard()->getField(4, 1));
-      $wKing = array($this->getBoard()->getField(5, 1));
+      $wKnight = array(
+          new Knight($white, $this->getBoard()->getField(2, 1)),
+          new Knight($white, $this->getBoard()->getField(7, 1))
+      );
+      $wBishop = array(
+          new Bishop($white, $this->getBoard()->getField(3, 1)), 
+          new Bishop($white, $this->getBoard()->getField(6, 1))
+      );
+      $wRook = array(
+          new Rook($white, $this->getBoard()->getField(1, 1)), 
+          new Rook($white, $this->getBoard()->getField(8, 1))
+      );
+      $wQueen = new Queen($white, $this->getBoard()->getField(4, 1));
+      $wKing = new King($white, $this->getBoard()->getField(5, 1));
       
+//      $this->board = new King($white, $wKnight);
       
       
       $black = $this->getPlayer(1);
       
-      
       $bPawn  = array();
       for($x=1; $x<=8; $x++)
       {
-      $bPawn[] = $this->getBoard()->getField($x, 7);
+      $bPawn[] = new Pawn($black, $this->getBoard()->getField($x, 7));
       }
       
-      $bKnight = array($this->getBoard()->getField(2, 8),$this->getBoard()->getField(7, 8));
-      $bBishop = array($this->getBoard()->getField(3, 8), $this->getBoard()->getField(6, 8));
-      $bRook = array($this->getBoard()->getField(1, 8), $this->getBoard()->getField(8, 8));
-      $bQueen = array($this->getBoard()->getField(4, 8));
-      $bKing = array($this->getBoard()->getField(5, 8));
+      $bKnight = array(
+          new Knight($black, $this->getBoard()->getField(2, 8)), 
+          new Knight($black, $this->getBoard()->getField(7, 8))
+      );
+      $bBishop = array(
+          new Bishop($black, $this->getBoard()->getField(3, 8)), 
+          new Bishop($black, $this->getBoard()->getField(6, 8))
+      );
+      $bRook = array(
+          new Rook($black, $this->getBoard()->getField(1, 8)), 
+          new Pawn($black, $this->getBoard()->getField(8, 8))
+      );
+      $bQueen = new Queen($black, $this->getBoard()->getField(4, 8));
+      $bKing = new King($black, $this->getBoard()->getField(5, 8));
       
+      print_r($black->getPieces());
   }
   
   /**
@@ -164,12 +190,12 @@ class ChessGame {
    * receive all players or one by passing a key
    * 
    * @param int $key (optional)
-   * @return type
+   * @return Player
    * @throws \InvalidArgumentException 
    */
   public function getPlayer($key = null)
   {
-    if($key == null) {
+    if($key === null) {
       return $this->player;
     }elseif(array_key_exists($key, $this->player)){
       return $this->player[$key];

@@ -23,8 +23,13 @@ class Queen extends Piece {
       }else{
           $this->setImage('&#9819;');
       }
-  }       
-    
+  }
+  
+  public function getPossibleMoves(Field $field)
+  {
+      return array();
+  }
+  
   public function verifyMove(Field $field)
   {
     throw new \Exception('todo');

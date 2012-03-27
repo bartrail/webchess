@@ -24,6 +24,11 @@ class Pawn extends Piece {
       }
   }   
   
+  public function getPossibleMoves(Field $field)
+  {
+      return array();
+  }
+  
   public function verifyMove(Field $field)
   {
     throw new \Exception('todo');

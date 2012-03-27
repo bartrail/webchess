@@ -22,9 +22,15 @@ class Rook extends Piece {
       }
   }       
     
+  public function getPossibleMoves(Field $field)
+  {
+      return array();
+  }
+  
   public function verifyMove(Field $field)
   {
-    throw new \Exception('todo');
+//    throw new \Exception('todo');
+      return array();
   }
   
 }
