@@ -14,7 +14,7 @@ $game = new ChessGame(array($p1, $p2));
 
 $game->initNewGame();
 
-?>
+?> 
 <!DOCTYPE html>
 <html>
 <head>
