@@ -143,6 +143,18 @@ class ChessBoard {
   }
   
   /**
+   * returns whether a piece from the given player is already placed
+   * 
+   * @param Field $field
+   * @param Player $player
+   * @return type 
+   */
+  public function hasPieceFromPlayer(Field $field, Player $player)
+  {
+      return $field->hasPieceFromPlayer($player);
+  }
+  
+  /**
    * return field dimensions
    * 
    * @return array
@@ -193,7 +205,7 @@ class ChessBoard {
   
   public function render()
   {
-      
+
     for($x = $this->dimensions[0]; $x >= 1 ; $x--)
     { 
         foreach($this->fields[$x] as $y => $field) 

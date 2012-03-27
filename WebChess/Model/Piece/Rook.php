@@ -12,7 +12,17 @@ use WebChess\Model\Piece;
  */
 class Rook extends Piece {
 
-  public function verifyMove($posX, $posY)
+  public function __construct(Player $player, Field $field)
+  {
+      parent::__construct($player, $field);
+      if($player->getColor() == ChessGame::COLOR_WHITE) {
+          $this->setImage('&#9814;');
+      }else{
+          $this->setImage('&#9820;');
+      }
+  }       
+    
+  public function verifyMove(Field $field)
   {
     throw new \Exception('todo');
   }
