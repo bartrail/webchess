@@ -244,7 +244,39 @@ abstract class Piece {
    * @return boolean
    * @throws InvalidMoveException
    */
-  protected abstract function verifyMove(Field $field);
+  protected function verifyMove(Field $field)
+  {
+      $target  = $field->getPosition();
+      
+      // get all possible moves next
+      $allMoves   = $this->getPossibleMoves($this->getField());
+      
+      // remove all fields that either are out of the board or placed 
+      // width an own piece
+      $allowedMoves = array();
+      foreach($allMoves as $move) {
+        $x = $move[0];
+        $y = $move[1];
+        try {
+            $fieldOnBoard = $this->getBoard()->getField($x, $y);
+        }catch(InvalidPositionException $e) {
+            continue;
+        }
+        
+        // is field placed with an own field?
+        if($fieldOnBoard->hasPieceFromPlayer($this->getPlayer()) == false) {
+            $allowedMoves[] = $fieldOnBoard;
+        }
+      }
+      
+      foreach($allowedMoves as $allowedMove) {
+          if($field == $allowedMove) {
+              return true;
+          }
+      }
+      
+      throw new InvalidMoveException(sprintf("Move to %s/%s is not allowed", $target[0], $target[1]));
+  }
   
   /**
    * calculates the possible moves, only coordinates

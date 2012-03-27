@@ -28,45 +28,6 @@ class King extends Piece {
       }
   }    
     
-  protected function verifyMove(Field $field)
-  {
-      $target  = $field->getPosition();
-      
-      // test if target field is out of the dimensions of the board
-      if($this->getBoard()->validPosition($target[0], $target[1]) == false) {
-          throw new InvalidMoveException(sprintf('Cannot move out of the board to %s/%s', $target[0], $target[1]));
-      }
-      
-      // get all possible moves next
-      $allMoves   = $this->getPossibleMoves($this->getField());
-//      print_r($allMoves);
-      // remove all fields that either are out of the board or placed 
-      // width an own piece
-      $allowedMoves = array();
-      foreach($allMoves as $move) {
-        $x = $move[0];
-        $y = $move[1];
-        try {
-            $fieldOnBoard = $this->getBoard()->getField($x, $y);
-        }catch(InvalidPositionException $e) {
-            continue;
-        }
-        
-        // is field placed with an own field?
-        if($fieldOnBoard->hasPieceFromPlayer($this->getPlayer()) == false) {
-            $allowedMoves[] = $fieldOnBoard;
-        }
-      }
-      
-      foreach($allowedMoves as $allowedMove) {
-          if($field == $allowedMove) {
-              return true;
-          }
-      }
-      
-      throw new InvalidMoveException(sprintf("Move to %s/%s is not allowed", $target[0], $target[1]));
-  }
-  
   protected function getPossibleMoves(Field $field)
   {
       $x = $field->getPosX();
