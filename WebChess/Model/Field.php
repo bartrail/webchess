@@ -247,4 +247,9 @@ class Field {
     return $this->piece == null ? true : false;
   }
   
+  public function render()
+  {
+      
+  }
+  
 }
