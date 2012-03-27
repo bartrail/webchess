@@ -117,6 +117,11 @@ class Field {
        
   }
   
+  public function getColor()
+  {
+      return $this->color;
+  }
+  
   /**
    *
    * @param boolean $isFree
@@ -247,9 +252,18 @@ class Field {
     return $this->piece == null ? true : false;
   }
   
-  public function render()
-  {
-      
-  }
-  
+   public function render()
+   {
+     
+     $element = sprintf('<div id="field-%s-%s" data-x="%s" data-y="%s" class="field %s"></div>', 
+             $this->getPosX(),
+             $this->getPosY(),
+             $this->getPosX(),
+             $this->getPosY(),
+             $this->getColor()
+     );
+     return $element;
+        
+   }
+   
 }
