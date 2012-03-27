@@ -113,7 +113,7 @@ class ChessGame {
   public function initNewGame()
   {
       $this->setCreatedAt(new \DateTime());
-      $board = new ChessBoard($this);
+      $this->board = new ChessBoard($this);
 //      $this->nextRound();
   }
   
@@ -184,11 +184,19 @@ class ChessGame {
       
   }
   
+  /**
+   *
+   * @param ChessBoard $board 
+   */
   public function setBoard(ChessBoard $board)
   {
       $this->board = $board;
   }
   
+  /**
+   *
+   * @return ChessBoard
+   */
   public function getBoard()
   {
       return $this->board;
@@ -214,7 +222,7 @@ class ChessGame {
       return $this->winner;
   }
   
-  public function setCreatedAt(DateTime $date)
+  public function setCreatedAt(\DateTime $date)
   {
       $this->createdAt = $date;
   }
@@ -224,7 +232,7 @@ class ChessGame {
       return $this->createdAt;
   }
   
-  public function setUpdatedAt(DateTime $date)
+  public function setUpdatedAt(\DateTime $date)
   {
       $this->updatedAt = $date;
   }
