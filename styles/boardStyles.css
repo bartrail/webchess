@@ -76,8 +76,8 @@ a:hover {
     height: 100px;
 }
 #gameWrapper {
-    width: 800px;
-    height: 800px;
+    height: 860px;
+    width: 860px;
     margin: 0 auto;
 }
 
@@ -103,3 +103,14 @@ a:hover {
 #gameWrapper .field:hover {
     border-color: #000;
 }
+
+#board {
+    overflow: auto;
+}
+
+#gameBorder {
+    background-color: #fff;
+    font-family: fantasy;
+    color: #000;
+    padding: 30px;
+} 
