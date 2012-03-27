@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
-    <style type="text/css">
-        div {
-            
-            }
-        
-    </style>
+    <title>WebChess</title>
+    
+    
 </head>
 <body>
     <?php
-    
-    
     
     ?>
 </body>
