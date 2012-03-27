@@ -9,7 +9,7 @@ use WebChess\Exception\ChessException\InvalidPositionException;
 use WebChess\Exception\ChessException\InvalidColorException;
 
 /**
- * Represents a ChessBoar
+ * Represents a ChessBoard
  *
  * @author con
  * @copyright 23.03.2012 
