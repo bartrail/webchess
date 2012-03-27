@@ -166,6 +166,8 @@ abstract class Piece {
       // verify if the move is allowed
       if($this->verifyMove($field)) {
         if($field->hasPiece()) {
+            
+          $this->capture($field->getPiece());
           
         }
         return $this->moveToField($field);
