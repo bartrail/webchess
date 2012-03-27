@@ -3,6 +3,9 @@
 namespace WebChess\Model\Piece;
 
 use WebChess\Model\Piece;
+use WebChess\Model\Player;
+use WebChess\Model\Field;
+use WebChess\Model\ChessGame;
 
 /**
  * Queen Piece Class
@@ -12,7 +15,17 @@ use WebChess\Model\Piece;
  */
 class Queen extends Piece {
 
-  public function verifyMove($posX, $posY)
+  public function __construct(Player $player, Field $field)
+  {
+      parent::__construct($player, $field);
+      if($player->getColor() == ChessGame::COLOR_WHITE) {
+          $this->setImage('&#9813;');
+      }else{
+          $this->setImage('&#9819;');
+      }
+  }       
+    
+  public function verifyMove(Field $field)
   {
     throw new \Exception('todo');
   }

@@ -52,6 +52,12 @@ abstract class Piece {
    */
   protected $image;
   
+  /**
+   * create a piece
+   * 
+   * @param Player $player
+   * @param Field $field 
+   */
   public function __construct(Player $player, Field $field)
   {
     $this->setPlayer($player);
@@ -175,6 +181,9 @@ abstract class Piece {
       
     }catch(ChessException $e) {
       
+      echo $e->getMessage();
+      echo "\n";
+      echo $e->getTraceAsString();
       return false;
       
     }
@@ -236,5 +245,18 @@ abstract class Piece {
    * @throws InvalidMoveException
    */
   protected abstract function verifyMove(Field $field);
+  
+  /**
+   * calculates the possible moves, only coordinates
+   * 
+   * @param Field $field 
+   * @return array
+   */
+  protected abstract function getPossibleMoves(Field $field);
+  
+  public function __toString()
+  {
+      return $this->getImage();
+  }
   
 }

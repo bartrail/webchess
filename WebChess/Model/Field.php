@@ -132,7 +132,7 @@ class Field {
     if(!is_bool($isFree)) {
       throw new \InvalidArgumentException(sprintf('Only booleans are allowed for setting a field to free'));
     }
-    $this->free = $free;
+    $this->free = $isFree;
   }
   
   /**
@@ -265,7 +265,22 @@ class Field {
    */
   public function hasPiece()
   {
-    return $this->piece == null ? true : false;
+    return $this->piece instanceof Piece ? true : false;
+  }
+  
+  /**
+   * returns whether there is a player placed on the field or not
+   * 
+   * @param Player $player
+   * @return boolean
+   */
+  public function hasPieceFromPlayer(Player $player)
+  {
+      if($this->hasPiece()) {
+          return $this->getPiece()->getPlayer() == $player;
+      }else{
+          return false;
+      }
   }
   
    public function render()
