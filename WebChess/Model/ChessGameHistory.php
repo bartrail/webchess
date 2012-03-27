@@ -23,11 +23,12 @@ class ChessGameHistory {
   public function __construct()
   {
       
+      
   }
   
   public function save(ChessGame $game)
   {
-      print_r($game);
+//      print_r($game);
   }
   
   
