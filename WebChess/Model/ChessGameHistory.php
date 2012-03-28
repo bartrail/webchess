@@ -88,4 +88,9 @@ class ChessGameHistory {
       }
   }
   
+  public static function getGames()
+  {
+      return array_keys($_SESSION);
+  }
+  
 }

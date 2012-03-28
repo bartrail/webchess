@@ -55,6 +55,7 @@ body {
     font-family: Georgia, serif;
     color: #222;
     text-align: center;
+    font-size: 12px;
 }
 
 a {
@@ -75,6 +76,12 @@ a:hover {
 #header {
     height: 100px;
 }
+
+h1 {
+    margin: 25px 0;
+    font-size: 25px;
+}
+
 #gameWrapper {
     height: 860px;
     width: 860px;
@@ -155,3 +162,11 @@ a:hover {
     height: 100%;
 }
 
+.ui-dialog-content {
+    text-align: left;
+}
+
+.ui-dialog-content label {
+    display: inline-block;
+    width: 100px;
+}
