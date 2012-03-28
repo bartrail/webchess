@@ -49,15 +49,15 @@ class ChessBoard {
    * @param ChessGame $game
    * @param ChessBoard $board = null 
    */
-  public function __construct(ChessGame $game, ChessBoard $board = null)
+  public function __construct(ChessGame $game, array $fields = null)
   {
     $this->setGame($game);
     
     // if no board is given, suppose a clean field
-    if($board == null) {
+    if($fields == null) {
       $this->initFields();
     }else{
-      $this->buildFieldsFromSnapshot($board);
+      $this->buildFieldsFromSnapshot($fields);
     }
   }
   
@@ -256,18 +256,27 @@ class ChessBoard {
   public function debugPieces()
   {
       $output = array();
-      foreach($this->getFields() as $row) {
-          foreach($row as $col => $field) {
+      
+      $player = $this->getGame()->getPlayer();
+      foreach($player as $p) {
+          $output['player'][] = array(
+            'name' => $p->getName(),
+            'color' => $p->getColor()
+          );
+      }
+      
+      foreach($this->getFields() as $col) {
+          foreach($col as $row => $field) {
             /* @var $field Field */
             if($field->getPiece()) {
-                $output[] = array(
+                $output['fields'][] = array(
                     'x' => $field->getPosX(),
                     'y' => $field->getPosY(),
                     'player' => $field->getPiece()->getPlayer()->__toString(),
-                    'piece' => get_class($field->getPiece())
+                    'piece'  => $field->getPiece()->getType()
                 );
             }else{
-                $output[] = array(
+                $output['fields'][] = array(
                     'x' => $field->getPosX(),
                     'y' => $field->getPosY()
                 );
@@ -282,8 +291,9 @@ class ChessBoard {
    * 
    * @param ChessBoard $board
    */
-  public function buildFieldsFromSnapshot(ChessBoard $board)
+  public function buildFieldsFromSnapshot(array $fields)
   {
+//      print_r($fields);
 //    throw new \Exception("todo");
   }
   

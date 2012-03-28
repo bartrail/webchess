@@ -292,4 +292,9 @@ abstract class Piece {
       return $this->getImage();
   }
   
+  public function getType()
+  {
+      return get_class($this);
+  }
+  
 }

@@ -26,10 +26,34 @@ class ChessGameHistory {
       
   }
   
-  public function save(ChessGame $game)
+  public function getGame($gameId)
   {
-//      print_r($game);
+      if(array_key_exists($gameId, $_SESSION)) {
+          return $_SESSION[$gameId];
+      }else{
+          return null;
+      }
   }
   
+  public function save(ChessGame $game)
+  {
+      
+      $fields = $game->getBoard()->debugPieces();  
+      $this->saveKey($game->getId(), $fields);
+      
+  }
+  
+  protected function saveKey($key, $value)
+  {
+      $_SESSION[$key] = $value;
+  }
+  
+  public function deleteGame(ChessGame $game)
+  {
+      $gameId = $game->getId();
+      if(array_key_exists($gameId, $_SESSION)) {
+          unset($_SESSION[$gameId]);
+      }
+  }
   
 }

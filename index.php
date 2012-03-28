@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 use WebChess\Model\ChessGame;
 use WebChess\Model\ChessGameHistory;
@@ -10,12 +11,16 @@ spl_autoload_register();
 $p1   = new Human('Sebastian', ChessGame::COLOR_WHITE);
 $p2   = new Human('Conrad', ChessGame::COLOR_BLACK);
 
-$game = new ChessGame(array($p1, $p2));
+$game = new ChessGame('spiel1', array($p1, $p2));
 
-$game->initNewGame();
+//$game->initNewGame();
 
 $history = new ChessGameHistory();
+//$history->deleteGame($game->getId());
 $history->save($game);
+
+//$gameFromSession = $history->getGame($game->getId());
+//print_r($game->getBoard()->debugPieces());
 
 ?>
 <!DOCTYPE html>

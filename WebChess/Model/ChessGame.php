@@ -103,15 +103,25 @@ class ChessGame {
   /**
    * creates a game
    * 
+   * @param string $id
    * @param array $player
    * @param ChessGameHistory $history (optional)
    */
-  public function __construct(array $player, ChessGameHistory $history = null)
+  public function __construct($id, array $player, ChessGameHistory $history = null)
   {
+    $this->setId($id);
     foreach($player as $player) {
       $this->addPlayer($player);
     }
+   
+    $history      = new ChessGameHistory();
+    $hasSavedGame = $history->getGame($this->getId());
     
+    if($hasSavedGame) {
+        $this->board = new ChessBoard($this, $hasSavedGame);
+    }else{
+        $this->initNewGame();
+    }
   }
   
   /**
@@ -173,6 +183,16 @@ class ChessGame {
       $bQueen = new Queen($black, $this->getBoard()->getField(4, 8));
       $bKing = new King($black, $this->getBoard()->getField(5, 8));
       
+  }
+  
+  public function setId($id)
+  {
+      $this->id = $id;
+  }
+  
+  public function getId()
+  {
+      return $this->id;
   }
   
   /**
