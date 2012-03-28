@@ -328,7 +328,26 @@ class ChessBoard {
    */
   public function buildFieldsFromSnapshot(array $fields)
   {
-//      print_r($fields);
+//    print_r($fields);
+    
+    foreach($fields['fields'] as $field) {
+        $x = $field['x'];
+        $y = $field['y'];
+        
+        $this->fields[$x][$y] = new Field($this, $x, $y);
+        
+        if(array_key_exists('player', $field)){
+            print_r($field);
+            $player     = $this->getGame()->getPlayerByName($field['player']);
+            $pieceName  = $field['piece'];
+            /* @var $piece Piece */
+            $piece      = new $pieceName($player, $this->fields[$x][$y]);
+        }
+    }
+     
+
+
+  
 //    throw new \Exception("todo");
   }
   

@@ -11,6 +11,8 @@ spl_autoload_register();
 $p1   = new Human('Sebastian', ChessGame::COLOR_WHITE);
 $p2   = new Human('Conrad', ChessGame::COLOR_BLACK);
 
+//ChessGameHistory::deleteAllGames();
+
 $game = new ChessGame('spiel1', array($p1, $p2));
 
 //$game->initNewGame();
@@ -54,3 +56,7 @@ $game = new ChessGame('spiel1', array($p1, $p2));
     
 </body>
 </html>
+
+<?php 
+//    print_r($_SESSION);
+?>

@@ -3,6 +3,8 @@
 namespace WebChess\Model;
 
 use WebChess\Model\Player;
+use WebChess\Model\Player\Human;
+use WebChess\Model\Player\Ai;
 use WebChess\Model\ChessBoard;
 use WebChess\Model\ChessGameHistory;
 
@@ -117,17 +119,23 @@ class ChessGame {
   public function __construct($id, array $player, ChessGameHistory $history = null)
   {
     $this->setId($id);
-    foreach($player as $player) {
-      $this->addPlayer($player);
-    }
-   
+    
     $hasSavedGame = ChessGameHistory::getGame($this->getId());
     
     if($hasSavedGame) {
+        foreach($hasSavedGame['player'] as $player) {
+            $this->addSavedPlayer($player);
+        }
         $this->board = new ChessBoard($this, $hasSavedGame);
+        
     }else{
+        foreach($player as $player) {
+            $this->addPlayer($player);
+        }
         $this->initNewGame();
     }
+   
+    
   }
   
   /**
@@ -238,6 +246,27 @@ class ChessGame {
   public function addCaptured(Piece $piece)
   {
       $this->capturedPieces[$piece->getPlayer()->getName()][] = $piece;
+  }
+  
+  /**
+   *
+   * @param string $name
+   * @return Player
+   */
+  public function getPlayerByName($name)
+  {
+      foreach($this->getPlayer() as $player) {
+          /* @var $player Player */
+          if($player->getName() == $name) {
+              return $player;
+          }
+      }
+  }
+  
+  public function addSavedPlayer($player)
+  {
+      $player = new Human($player['name'], $player['color']);
+      $this->addPlayer($player);
   }
   
   /**

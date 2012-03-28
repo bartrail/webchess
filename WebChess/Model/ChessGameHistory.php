@@ -81,4 +81,11 @@ class ChessGameHistory {
       }
   }
   
+  public static function deleteAllGames()
+  {
+      foreach($_SESSION as $key => $value) {
+          unset($_SESSION[$key]);
+      }
+  }
+  
 }
