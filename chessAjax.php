@@ -4,26 +4,41 @@ require_once('header.php');
 use WebChess\Model\ChessGame;
 use WebChess\Model\ChessGameHistory;
 
+//print_r($_POST);
 /*
-print_r($_POST);
 Array
 (
+    [gameid] => spiel1
     [piece] => Array
         (
-            [x] => 4
-            [y] => 7
-            [type] => Pawn
+            [x] => 1
+            [y] => 8
+            [type] => Rook
             [player] => Conrad
         )
 
     [targetField] => Array
         (
-            [x] => 4
+            [x] => 1
             [y] => 6
         )
+
 )
 */
 
 $post = $_POST;
 
+$game = new ChessGame($post['gameId']);
 
+$startField = $game->getBoard()->getField($post['piece']['x'], $post['piece']['y']);
+/* @var $startField WebChess\Model\Field */
+
+$targetField = $game->getBoard()->getField($post['targetField']['x'], $post['targetField']['y']);
+
+$piece = $startField->getPiece();
+
+$piece->moveToField($targetField);
+
+ChessGameHistory::save($game);
+
+echo $game->getBoard()->render();

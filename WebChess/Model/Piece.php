@@ -116,6 +116,7 @@ abstract class Piece {
   {
     $this->field = $field;
     $field->setPiece($this);
+    return true;
   }
   
   /**
@@ -179,7 +180,7 @@ abstract class Piece {
           $this->capture($field->getPiece());
           
         }
-        return $this->moveToField($field);
+        return $this->setField($field);
       }
       
     }catch(ChessException $e) {
@@ -235,10 +236,9 @@ abstract class Piece {
    * @param Field $field
    * @return boolean 
    */
-  protected function moveToField(Field $field)
+  public function moveToField(Field $field)
   {
-    $this->setField($field);
-    return true;
+      return $this->move($field->getPosX(), $field->getPosY());
   }
   
   /**
@@ -311,7 +311,8 @@ abstract class Piece {
   
   public function __toString()
   {
-      return sprintf('<div class="piece" data-x="%s" data-y="%s" data-player="%s" data-type="%s">%s</div>', 
+      return sprintf('<div class="piece" data-gameid="%s" data-x="%s" data-y="%s" data-player="%s" data-type="%s">%s</div>', 
+               $this->getBoard()->getGame()->getGameId(),
                $this->getField()->getPosX(),
                $this->getField()->getPosY(),
                $this->getPlayer()->getName(),

@@ -114,9 +114,8 @@ class ChessGame {
    * 
    * @param string $id
    * @param array $player
-   * @param ChessGameHistory $history (optional)
    */
-  public function __construct($id, array $player, ChessGameHistory $history = null)
+  public function __construct($id, $player = array())
   {
     $this->setId($id);
     

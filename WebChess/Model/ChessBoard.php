@@ -337,7 +337,7 @@ class ChessBoard {
         $this->fields[$x][$y] = new Field($this, $x, $y);
         
         if(array_key_exists('player', $field)){
-            print_r($field);
+//            print_r($field);
             $player     = $this->getGame()->getPlayerByName($field['player']);
             $pieceName  = $field['piece'];
             /* @var $piece Piece */
