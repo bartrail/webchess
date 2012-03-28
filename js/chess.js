@@ -9,9 +9,6 @@ $(document).ready(function() {
    
    // dialogs for chess game
    
-   var test = ["test", "lala"];
-   console.log(test);
-   
    function createOrLoadGame(dialog) {
     var create = true;
 

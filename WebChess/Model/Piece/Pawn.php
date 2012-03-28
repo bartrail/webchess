@@ -35,13 +35,17 @@ class Pawn extends Piece {
       $y = $this->getField()->getPosY();
 
       // moves depend on the player
-      $player = $this->getPlayer();
+      $player       = $this->getPlayer();
+      $otherPlayer  = $this->getBoard()->getGame()->getOtherPlayer($this->getPlayer());
+      
       if($player->getColor() == ChessGame::COLOR_WHITE) {
+
+          $moves = array();
+          // default move +1 vertical if not placed with a piece
+          if($this->getBoard()->getField($x, $y+1)->hasPieceFromPlayer($otherPlayer) == false) {
+            $moves[] = array($x, $y+1);
+          }
           
-          // default move +1 vertical
-          $moves = array(
-            array($x, $y+1)  
-          );
           // init move +2 vertical
           if($y == 2) {
               $moves[] = array($x, $y+2);
@@ -51,7 +55,6 @@ class Pawn extends Piece {
             
             $fieldTopLeft   = $this->getBoard()->getField($x-1, $y+1);
             $fieldTopRight  = $this->getBoard()->getField($x+1, $y+1);
-            $otherPlayer    = $this->getBoard()->getGame()->getOtherPlayer($this->getPlayer());
             if($fieldTopLeft->hasPieceFromPlayer($otherPlayer)) {
               $moves[] = array($x-1, $y+1);
             }
@@ -65,10 +68,12 @@ class Pawn extends Piece {
           
       }else{
           
-          // default move -1 vertical
-          $moves = array(
-            array($x, $y-1)  
-          );
+          $moves = array();
+          // default move -1 vertical if not placed with a piece
+          if($this->getBoard()->getField($x, $y-1)->hasPieceFromPlayer($otherPlayer) == false) {
+            $moves[] = array($x, $y-1);
+          }        
+        
           // init move -2 vertical
           if($y == 7) {
               $moves[] = array($x, $y-2);

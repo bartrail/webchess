@@ -27,4 +27,30 @@ class Rook extends Piece {
       }
   }       
     
+  /**
+   *
+   * @return array
+   */
+  public function getPossibleMoves()
+  {
+      $x = $this->getField()->getPosX();
+      $y = $this->getField()->getPosY();
+      
+      $maxX = $this->getBoard()->getMaxDimension(0);
+      $maxY = $this->getBoard()->getMaxDimension(1);
+      
+      $moves = array();
+      
+      for($i = 1; $i <= $maxX; $i++) {
+        for($j = 1; $j <= $maxY; $j++) {
+          // only those in the same row or column
+          if(($i == $x || $j == $y) && $this->getBoard()->getField($i, $j)->hasPieceFromPlayer($this->getPlayer()) == false) {
+            $moves[] = array($i, $j);
+          }
+        }
+      }
+      
+      return $moves;
+  }
+  
 }

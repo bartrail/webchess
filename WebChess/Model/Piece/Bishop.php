@@ -27,7 +27,7 @@ class Bishop extends Piece {
       }
   }
   
-  public function getPossibleMoves_()
+  public function getPossibleMoves()
   {
       $x = $this->getField()->getPosX();
       $y = $this->getField()->getPosY();
@@ -35,16 +35,23 @@ class Bishop extends Piece {
       $maxX = $this->getBoard()->getMaxDimension(0);
       $maxY = $this->getBoard()->getMaxDimension(1);
       
-      $moves = array();
+      $moves = array(
+      );
       
       // add all to upper right
-      for($i = $x; $i <= $maxX; $i++) {
-          for($j = $y; $y <= $maxY; $j++) {
-              
+      for($i = 1; $i <= $maxX; $i++) {
+          for($j = 1; $j <= $maxY; $j++) {
+//              echo $i."-".$j."\n";
+            
           }
       }
       
       return $moves;
+  }
+  
+  protected function isBishopMove($x, $y)
+  {
+    
   }
     
 }
