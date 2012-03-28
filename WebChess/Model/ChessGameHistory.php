@@ -23,10 +23,15 @@ class ChessGameHistory {
   public function __construct()
   {
       
-      
   }
   
-  public function getGame($gameId)
+  /**
+   * retrieves a game from the session
+   * 
+   * @param string $gameId
+   * @return null or array
+   */
+  public static function getGame($gameId)
   {
       if(array_key_exists($gameId, $_SESSION)) {
           return $_SESSION[$gameId];
@@ -35,20 +40,40 @@ class ChessGameHistory {
       }
   }
   
-  public function save(ChessGame $game)
+  /**
+   * saves a game in the session
+   * 
+   * @param ChessGame $game 
+   */
+  public static function save(ChessGame $game)
   {
       
-      $fields = $game->getBoard()->debugPieces();  
-      $this->saveKey($game->getId(), $fields);
+      $gameData = $game->getBoard()->getGameData();
+      $game->setUpdatedAt(new \DateTime());
+//      $gameData['meta'] = array(
+//        'createdAt' => $game->getCreatedAt()->getTimestamp(),
+//        'updatedAt' => $game->getUpdatedAt()->getTimestamp()
+//      );
+      
+      self::saveKey($game->getId(), $gameData);
       
   }
   
-  protected function saveKey($key, $value)
+  /**
+   * shortcut for saving in a session
+   * 
+   * @param mixed $key
+   * @param mixed $value 
+   */
+  protected static function saveKey($key, $value)
   {
       $_SESSION[$key] = $value;
   }
   
-  public function deleteGame(ChessGame $game)
+  /*
+   * deletes a game from the session
+   */
+  public static function deleteGame(ChessGame $game)
   {
       $gameId = $game->getId();
       if(array_key_exists($gameId, $_SESSION)) {

@@ -203,24 +203,32 @@ class ChessBoard {
     }
   }
   
+  /**
+   * returns a string containing the rendered html for the board 
+   * with fields and pieces
+   * 
+   * @return string
+   */
   public function render()
   {
-//    for($x = 1; $x <= $this->dimensions[0] ; $x++)
-//    { 
-//        for($y = $this->dimensions[1]; $y >= 1; $y--) {
-//            $field = $this->fields[$y][$x];
-//            echo $field->render();
-//        }
-//    }
+    $output = '';
     for($y = $this->dimensions[1]; $y >= 1; $y--)
     { 
         for($x = 1; $x <= $this->dimensions[0] ; $x++) {
-            $field = $this->fields[$x][$y];
-            echo $field->render();
+            $field   = $this->fields[$x][$y];
+            $output .= $field->render();
         }
     }
+    
+    return $output;
   }
   
+  /**
+   * renders a horizontal border (bottom or top)
+   * 
+   * @param string $position
+   * @return string
+   */
   public function renderBorderX($position = 'bottom')
   {
       $border = '';
@@ -236,6 +244,12 @@ class ChessBoard {
       return $border;
   }
   
+  /**
+   * renders a vertical border (left or right)
+   * 
+   * @param string $position
+   * @return string
+   */
   public function renderBorderY($position = 'left')
   {
       $border = '';
@@ -253,7 +267,28 @@ class ChessBoard {
       return $border;
   }
   
-  public function debugPieces()
+  /**
+   * renders all borders at once
+   * 
+   * @return string
+   */
+  public function renderAllBorders()
+  {
+      $output  = '';
+      $output .= $this->renderBorderX('bottom');
+      $output .= $this->renderBorderX('top');
+      $output .= $this->renderBorderY('left');
+      $output .= $this->renderBorderY('right');
+      return $output;
+  }
+  
+  /**
+   * returns an array with the gamedata containing
+   * players and fields and their pieces
+   * 
+   * @return array
+   */
+  public function getGameData()
   {
       $output = array();
       

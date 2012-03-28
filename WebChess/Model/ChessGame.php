@@ -87,6 +87,13 @@ class ChessGame {
   protected $historyRecordings = array();
   
   /**
+   * keeps the captured pieces
+   * 
+   * @var array
+   */
+  protected $capturedPieces = array();
+  
+  /**
    * the date of the creation of the game
    * 
    * @var DateTime
@@ -114,8 +121,7 @@ class ChessGame {
       $this->addPlayer($player);
     }
    
-    $history      = new ChessGameHistory();
-    $hasSavedGame = $history->getGame($this->getId());
+    $hasSavedGame = ChessGameHistory::getGame($this->getId());
     
     if($hasSavedGame) {
         $this->board = new ChessBoard($this, $hasSavedGame);
@@ -205,6 +211,7 @@ class ChessGame {
     $this->player[] = $player;
   } 
   
+  
   /**
    * receive all players or one by passing a key
    * 
@@ -221,6 +228,16 @@ class ChessGame {
     }else{
       throw new \InvalidArgumentException(sprintf('Unknown Player with key %s', $key));
     }
+  }
+  
+  /**
+   * add a captured piece to the list
+   * 
+   * @param Piece $piece 
+   */
+  public function addCaptured(Piece $piece)
+  {
+      $this->capturedPieces[$piece->getPlayer()->getName()][] = $piece;
   }
   
   /**
@@ -304,6 +321,10 @@ class ChessGame {
       $this->createdAt = $date;
   }
   
+  /**
+   *
+   * @return \DateTime
+   */
   public function getCreatedAt()
   {
       return $this->createdAt;
@@ -314,6 +335,10 @@ class ChessGame {
       $this->updatedAt = $date;
   }
   
+  /**
+   *
+   * @return \DateTime
+   */
   public function getUpdatedAt()
   {
       return $this->updatedAt;

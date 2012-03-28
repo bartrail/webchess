@@ -201,6 +201,7 @@ abstract class Piece {
     // set self to the piece's position
 //    $piece->getField()->setPiece($this);
     $piece->setIsCaptured(true);
+    $this->getBoard()->getGame()->addCaptured($piece);
   }
   
   /**

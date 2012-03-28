@@ -15,12 +15,11 @@ $game = new ChessGame('spiel1', array($p1, $p2));
 
 //$game->initNewGame();
 
-$history = new ChessGameHistory();
-//$history->deleteGame($game->getId());
-$history->save($game);
+//ChessGameHistory::deleteGame($game);
+//ChessGameHistory::save($game);
 
 //$gameFromSession = $history->getGame($game->getId());
-//print_r($game->getBoard()->debugPieces());
+//print_r($game->getBoard()->getGameData());
 
 ?>
 <!DOCTYPE html>
@@ -41,15 +40,12 @@ $history->save($game);
         <div id="gameWrapper">
             <div id="gameBorder">
                 <div id="board">
-                    <?php
-                    $game->getBoard()->render();
-                    ?>
+                <?php
+                echo $game->getBoard()->render();
+                ?>
                 </div>
-                <?php echo $game->getBoard()->renderBorderX('bottom') ?>
-                <?php echo $game->getBoard()->renderBorderX('top') ?>
-                <?php echo $game->getBoard()->renderBorderY('left') ?>
-                <?php echo $game->getBoard()->renderBorderY('right') ?>
-            </div>            
+                <?php echo $game->getBoard()->renderAllBorders() ?>
+            </div>           
         </div>
             
             
