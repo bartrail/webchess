@@ -263,6 +263,26 @@ class ChessGame {
       }
   }
   
+  /**
+   * returns the other player, playing this game
+   * 
+   * @param Player $player
+   * @return Player
+   */
+  public function getOtherPlayer(Player $player)
+  {
+      foreach($this->getPlayer() as $p) {
+          if($p != $player) {
+              return $p;
+          }
+      }
+  }
+  
+  /**
+   * adds a player from a savegame
+   * 
+   * @param array $player 
+   */
   public function addSavedPlayer($player)
   {
       $player = new Human($player['name'], $player['color']);

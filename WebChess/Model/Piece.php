@@ -288,7 +288,26 @@ abstract class Piece {
    * @param Field $field 
    * @return array
    */
-  protected abstract function getPossibleMoves();
+  protected function getPossibleMoves()
+  {
+      $x = $this->getField()->getPosX();
+      $y = $this->getField()->getPosY();
+      
+      $moves = array(
+        array($x-1, $y-1),  // bottom left
+        array($x  , $y-1),  // bottom center
+        array($x+1, $y-1),  // bottom right
+        array($x-1, $y+1),  // top left
+        array($x  , $y+1),  // top center
+        array($x+1, $y+1),  // top right
+        array($x-1, $y  ),  // center left
+        array($x+1, $y  )   // center right
+      );
+      
+      return $moves;
+  }
+    
+//  protected abstract function getPossibleMoves();
   
   public function __toString()
   {

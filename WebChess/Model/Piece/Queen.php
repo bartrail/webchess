@@ -27,9 +27,4 @@ class Queen extends Piece {
       }
   }
   
-  protected function getPossibleMoves()
-  {
-      return array();
-  }
-  
 }

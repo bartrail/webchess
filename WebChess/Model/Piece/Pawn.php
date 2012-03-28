@@ -7,6 +7,8 @@ use WebChess\Model\Player;
 use WebChess\Model\Field;
 use WebChess\Model\ChessGame;
 
+use WebChess\Exception\ChessException\InvalidPositionException;
+
 /**
  * Pawn Piece Class
  *
@@ -29,7 +31,69 @@ class Pawn extends Piece {
   
   protected function getPossibleMoves()
   {
-      return array();
+      $x = $this->getField()->getPosX();
+      $y = $this->getField()->getPosY();
+
+      // moves depend on the player
+      $player = $this->getPlayer();
+      if($player->getColor() == ChessGame::COLOR_WHITE) {
+          
+          // default move +1 vertical
+          $moves = array(
+            array($x, $y+1)  
+          );
+          // init move +2 vertical
+          if($y == 2) {
+              $moves[] = array($x, $y+2);
+          }
+          // try if top left or top right have a piece, it can be captured
+          try {
+            
+            $fieldTopLeft   = $this->getBoard()->getField($x-1, $y+1);
+            $fieldTopRight  = $this->getBoard()->getField($x+1, $y+1);
+            $otherPlayer    = $this->getBoard()->getGame()->getOtherPlayer($this->getPlayer());
+            if($fieldTopLeft->hasPieceFromPlayer($otherPlayer)) {
+              $moves[] = array($x-1, $y+1);
+            }
+            if($fieldTopRight->hasPieceFromPlayer($otherPlayer)) {
+              $moves[] = array($x+1, $y+1);
+            }
+          }catch(InvalidPositionException $e) {
+              
+          }
+          
+          
+      }else{
+          
+          // default move -1 vertical
+          $moves = array(
+            array($x, $y-1)  
+          );
+          // init move -2 vertical
+          if($y == 7) {
+              $moves[] = array($x, $y-2);
+          }
+          
+          // try if bottom left or bottom right have a piece, it can be captured
+          try {
+            
+            $fieldTopLeft  = $this->getBoard()->getField($x-1, $y-1);
+            $fieldTopRight = $this->getBoard()->getField($x+1, $y-1);
+            $otherPlayer   = $this->getBoard()->getGame()->getOtherPlayer($this->getPlayer());
+            if($fieldTopLeft->hasPieceFromPlayer($otherPlayer)) {
+              $moves[] = array($x-1, $y-1);
+            }
+            if($fieldTopRight->hasPieceFromPlayer($otherPlayer)) {
+              $moves[] = array($x+1, $y-1);
+            }
+          }catch(InvalidPositionException $e) {
+              
+          }          
+          
+      }
+      
+      return $moves;
   }
+  
   
 }

@@ -27,9 +27,4 @@ class Knight extends Piece {
       }
   }       
    
-  protected function getPossibleMoves()
-  {
-      return array();
-  }
-  
 }

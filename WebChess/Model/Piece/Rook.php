@@ -27,9 +27,4 @@ class Rook extends Piece {
       }
   }       
     
-  protected function getPossibleMoves()
-  {
-      return array();
-  }
-  
 }

@@ -26,10 +26,25 @@ class Bishop extends Piece {
           $this->setImage('&#9821;');
       }
   }
-    
-  public function getPossibleMoves()
-  {
-      return array();
-  }  
   
+  public function getPossibleMoves_()
+  {
+      $x = $this->getField()->getPosX();
+      $y = $this->getField()->getPosY();
+      
+      $maxX = $this->getBoard()->getMaxDimension(0);
+      $maxY = $this->getBoard()->getMaxDimension(1);
+      
+      $moves = array();
+      
+      // add all to upper right
+      for($i = $x; $i <= $maxX; $i++) {
+          for($j = $y; $y <= $maxY; $j++) {
+              
+          }
+      }
+      
+      return $moves;
+  }
+    
 }
