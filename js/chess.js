@@ -13,13 +13,13 @@ $(document).ready(function() {
        containment: "#board",
        snap: '.piece',
        start: function(event, ui) {
-           console.log("start", event, ui);
+//           console.log("start", event, ui);
        },
        drag: function(event, ui) {
 //           console.log("drag", event, ui);
        },
        stop: function(event, ui) {
-           console.log("end", event, ui);
+//           console.log("end", event, ui);
        }
    });
    
@@ -37,6 +37,8 @@ $(document).ready(function() {
                type: 'POST',
                data: {
                   piece: {
+                      x: $piece.data('x'),
+                      y: $piece.data('y'),
                       type: $piece.data('type'),
                       player: $piece.data('player')
                   },

@@ -292,7 +292,9 @@ abstract class Piece {
   
   public function __toString()
   {
-      return sprintf('<div class="piece" data-player="%s" data-type="%s">%s</div>', 
+      return sprintf('<div class="piece" data-x="%s" data-y="%s" data-player="%s" data-type="%s">%s</div>', 
+               $this->getField()->getPosX(),
+               $this->getField()->getPosY(),
                $this->getPlayer()->getName(),
                $this->type,
                $this->getImage()
