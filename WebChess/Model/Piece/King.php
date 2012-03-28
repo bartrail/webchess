@@ -18,6 +18,8 @@ use WebChess\Exception\ChessException\InvalidPositionException;
  */
 class King extends Piece {
 
+  public $type = 'King';  
+    
   public function __construct(Player $player, Field $field)
   {
       parent::__construct($player, $field);

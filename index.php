@@ -1,12 +1,9 @@
 <?php
-session_start();
+require_once('header.php');
 
 use WebChess\Model\ChessGame;
 use WebChess\Model\ChessGameHistory;
 use WebChess\Model\Player\Human;
-
-spl_autoload_extensions(".php"); // comma-separated list
-spl_autoload_register();
 
 $p1   = new Human('Sebastian', ChessGame::COLOR_WHITE);
 $p2   = new Human('Conrad', ChessGame::COLOR_BLACK);
@@ -29,7 +26,11 @@ $game = new ChessGame('spiel1', array($p1, $p2));
 <head>
     <title>WebChess</title>
     <link rel="stylesheet" href="styles/boardStyles.css" type="text/css">
-    
+    <link rel="stylesheet" href="js/jquery/css/humanity/jquery-ui-1.8.18.custom.css" type="text/css">
+
+    <script type="text/javascript" src="js/jquery/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery/js/jquery-ui-1.8.18.custom.min.js"></script>
+    <script type="text/javascript" src="js/chess.js"></script>
 </head>
 <body>
     

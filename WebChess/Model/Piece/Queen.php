@@ -15,6 +15,8 @@ use WebChess\Model\ChessGame;
  */
 class Queen extends Piece {
 
+  public $type = 'Queen';  
+    
   public function __construct(Player $player, Field $field)
   {
       parent::__construct($player, $field);

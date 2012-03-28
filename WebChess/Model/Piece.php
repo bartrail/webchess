@@ -18,6 +18,8 @@ use WebChess\Exception\ChessException\InvalidMoveException;
  */
 abstract class Piece {
 
+  public $type;
+    
   /**
    * The field this Piece is placed
    * 
@@ -290,7 +292,11 @@ abstract class Piece {
   
   public function __toString()
   {
-      return $this->getImage();
+      return sprintf('<div class="piece" data-player="%s" data-type="%s">%s</div>', 
+               $this->getPlayer()->getName(),
+               $this->type,
+               $this->getImage()
+             );
   }
   
   public function getType()
