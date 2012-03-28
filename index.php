@@ -14,7 +14,7 @@ $game = new ChessGame('spiel1', array($p1, $p2));
 
 //$game->initNewGame();
 
-//ChessGameHistory::deleteGame($game);
+//ChessGameHistory::deleteAllGames();
 //ChessGameHistory::save($game);
 
 //$gameFromSession = $history->getGame($game->getId());

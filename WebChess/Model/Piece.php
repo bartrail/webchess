@@ -114,6 +114,10 @@ abstract class Piece {
    */
   public function setField(Field $field)
   {
+    // remove from old field
+    if($this->getField()) {
+        $this->getField()->removePiece();
+    }
     $this->field = $field;
     $field->setPiece($this);
     return true;
@@ -185,9 +189,10 @@ abstract class Piece {
       
     }catch(ChessException $e) {
       
-      echo $e->getMessage();
-      echo "\n";
-      echo $e->getTraceAsString();
+//      echo $e->getMessage();
+//      echo "\n";
+//      echo $e->getTraceAsString();
+      throw new ChessException('Invalid Move');
       return false;
       
     }

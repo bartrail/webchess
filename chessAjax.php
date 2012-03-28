@@ -3,6 +3,7 @@ require_once('header.php');
 
 use WebChess\Model\ChessGame;
 use WebChess\Model\ChessGameHistory;
+use WebChess\Exception\ChessException;
 
 //print_r($_POST);
 /*
@@ -37,8 +38,15 @@ $targetField = $game->getBoard()->getField($post['targetField']['x'], $post['tar
 
 $piece = $startField->getPiece();
 
-$piece->moveToField($targetField);
-
-ChessGameHistory::save($game);
+try {
+    
+    $piece->moveToField($targetField);
+    ChessGameHistory::save($game);
+    
+}catch(ChessException $e) {
+    
+}
 
 echo $game->getBoard()->render();
+
+
