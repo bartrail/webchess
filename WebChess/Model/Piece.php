@@ -73,6 +73,7 @@ abstract class Piece {
   public function setPlayer(Player $player)
   {
     $this->player = $player;
+    $player->addPiece($this);
   }
   
   /**

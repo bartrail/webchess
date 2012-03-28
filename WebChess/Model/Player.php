@@ -167,4 +167,9 @@ abstract class Player {
   {
       $this->pieces[] = $piece;
   }
+  
+  public function __toString()
+  {
+      return $this->getName();
+  }
 }

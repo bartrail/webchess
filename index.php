@@ -17,8 +17,6 @@ $game->initNewGame();
 $history = new ChessGameHistory();
 $history->save($game);
 
-//$king = new \WebChess\Model\Piece\King($p1, $game->getBoard()->getField(5, 1));
-
 ?>
 <!DOCTYPE html>
 <html>

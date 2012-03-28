@@ -205,12 +205,17 @@ class ChessBoard {
   
   public function render()
   {
-
-    for($x = $this->dimensions[0]; $x >= 1 ; $x--)
+//    for($x = 1; $x <= $this->dimensions[0] ; $x++)
+//    { 
+//        for($y = $this->dimensions[1]; $y >= 1; $y--) {
+//            $field = $this->fields[$y][$x];
+//            echo $field->render();
+//        }
+//    }
+    for($y = $this->dimensions[1]; $y >= 1; $y--)
     { 
-        foreach($this->fields[$x] as $y => $field) 
-        {
-            /* @var $field Field */
+        for($x = 1; $x <= $this->dimensions[0] ; $x++) {
+            $field = $this->fields[$x][$y];
             echo $field->render();
         }
     }
@@ -246,6 +251,30 @@ class ChessBoard {
           $row--;
       }
       return $border;
+  }
+  
+  public function debugPieces()
+  {
+      $output = array();
+      foreach($this->getFields() as $row) {
+          foreach($row as $col => $field) {
+            /* @var $field Field */
+            if($field->getPiece()) {
+                $output[] = array(
+                    'x' => $field->getPosX(),
+                    'y' => $field->getPosY(),
+                    'player' => $field->getPiece()->getPlayer()->__toString(),
+                    'piece' => get_class($field->getPiece())
+                );
+            }else{
+                $output[] = array(
+                    'x' => $field->getPosX(),
+                    'y' => $field->getPosY()
+                );
+            }
+          }
+      }
+      return $output;
   }
   
   /**

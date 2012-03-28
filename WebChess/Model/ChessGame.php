@@ -168,12 +168,11 @@ class ChessGame {
       );
       $bRook = array(
           new Rook($black, $this->getBoard()->getField(1, 8)), 
-          new Pawn($black, $this->getBoard()->getField(8, 8))
+          new Rook($black, $this->getBoard()->getField(8, 8))
       );
       $bQueen = new Queen($black, $this->getBoard()->getField(4, 8));
       $bKing = new King($black, $this->getBoard()->getField(5, 8));
       
-      print_r($black->getPieces());
   }
   
   /**
