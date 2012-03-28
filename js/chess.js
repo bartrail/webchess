@@ -36,6 +36,7 @@ $(document).ready(function() {
                dataType: 'html',
                type: 'POST',
                data: {
+                  gameId: $piece.data('gameid'),
                   piece: {
                       x: $piece.data('x'),
                       y: $piece.data('y'),
